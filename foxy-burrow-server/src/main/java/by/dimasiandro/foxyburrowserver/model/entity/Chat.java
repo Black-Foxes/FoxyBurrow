@@ -20,6 +20,6 @@ public class Chat {
     @OneToMany(mappedBy = "chat")
     private Collection<Message> messages;
 
-    @ManyToMany(mappedBy = "chats")
+    @ManyToMany(mappedBy = "chats", fetch = FetchType.LAZY)
     private Set<User> users;
 }

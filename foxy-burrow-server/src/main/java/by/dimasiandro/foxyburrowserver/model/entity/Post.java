@@ -31,7 +31,7 @@ public class Post {
     @JoinColumn(name="user_id", nullable=false)
     private User author;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinTable(
             name = "likes",
             joinColumns = @JoinColumn(name = "post_id"),
@@ -39,6 +39,6 @@ public class Post {
     )
     private Set<User> likes;
 
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private Set<Comment> comments;
 }
